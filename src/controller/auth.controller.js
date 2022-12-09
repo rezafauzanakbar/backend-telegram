@@ -4,7 +4,7 @@ const { success, failed, succesWithToken } = require("../helper/response");
 //deklare bcyrpt
 
 const bcyrpt = require("bcrypt");
-const jwtToken = require("../helper/generateJWT");
+// const jwtToken = require("../helper/generateJWT");
 
 module.exports = {
   register: (req, res) => {
@@ -50,9 +50,9 @@ module.exports = {
             .compare(password, result.rows[0].password)
             .then(async (result) => {
               if (result) {
-                const token = await jwtToken({
+                const token = {
                   email: user.email,
-                });
+                };
                 // console.log(token);
                 succesWithToken(
                   res,
